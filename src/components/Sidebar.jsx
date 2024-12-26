@@ -1,15 +1,18 @@
 import { NavLink } from 'react-router';
 import { categories } from '../data/categories';
 import Button from './Button';
+import { useStore } from '../store/store';
 
 export const Sidebar = () => {
+  const { clearProductsToOrder } = useStore();
+
   const handleCancelOrder = () => {
-    console.log('CancelOrder');
+    clearProductsToOrder();
   };
 
   return (
-    <aside className='md:w-72'>
-      <div className='p-4'>
+    <aside>
+      <div>
         <img className='w-40' src='/img/logo.svg' alt='logo' />
         <div className='flex flex-col mt-3'>
           {categories.map(({ nombre, icono, id }) => (

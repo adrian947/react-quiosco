@@ -4,11 +4,14 @@ import Button from './Button';
 import { useStore } from '../store/store';
 
 const Product = ({ product }) => {
-  const { setProductSelected } = useStore();
+  const { setProductSelected, productsToOrder } = useStore();
   const { nombre, imagen, precio } = product;
 
   const handleSetProductStore = () => {
     setProductSelected(product);
+  };
+  const checkDisabled = () => {
+    return productsToOrder.some(e=> e.id === product.id )
   };
 
   return (
@@ -26,6 +29,7 @@ const Product = ({ product }) => {
         textButton='Add Product'
         className='bg-indigo-600 hover:bg-indigo-800'
         onClick={handleSetProductStore}
+        disabled={checkDisabled()}
       />
     </div>
   );

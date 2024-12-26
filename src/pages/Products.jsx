@@ -18,7 +18,7 @@ const Products = () => {
   }, [categorieName, changeCategorieName]);
 
   return (
-    <div className='mt-10 px-5'>
+    <div className=' px-5'>
       <h2 className='text-4xl mb-3 font-bold'>Menu of {categorieName}</h2>
       <div className='grid gap-4 grid-cols-1 md:grid-cols-3 xl:grid-cols-5 '>
         {products

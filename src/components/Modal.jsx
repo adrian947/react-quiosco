@@ -16,7 +16,9 @@ const customStyles = {
 };
 
 const ModalComponent = () => {
-  const { productSelected, setProductSelected } = useStore((state) => state);
+  const { productSelected, setProductSelected, addProductsToOrder } = useStore(
+    (state) => state,
+  );
   const [counter, setCounter] = useState(1);
   if (!productSelected) return;
   Modal.setAppElement('#root');
@@ -32,6 +34,10 @@ const ModalComponent = () => {
   const restCount = () => {
     if (counter <= 1) return;
     setCounter(counter - 1);
+  };
+  const handleAddToOrder = () => {
+    addProductsToOrder({ ...productSelected, quantity: counter });
+    closeModal();
   };
 
   return (
@@ -79,7 +85,7 @@ const ModalComponent = () => {
 
           <Button
             className='bg-indigo-600 mt-6'
-            onClick={() => closeModal()}
+            onClick={handleAddToOrder}
             textButton='Add To order'
           />
         </div>

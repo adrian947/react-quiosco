@@ -1,10 +1,13 @@
 import PropTypes from 'prop-types';
 
-const Button = ({ className, textButton, onClick }) => {
+const Button = ({ className, textButton, onClick, disabled }) => {
   return (
     <button
-      className={`${className} text-center w-full p-3 font-bold text-white truncate`}
+      className={`${className} ${
+        disabled ? 'bg-slate-500' : ''
+      } text-center w-full p-3 font-bold text-white truncate`}
       onClick={() => onClick()}
+      disabled={disabled}
     >
       {textButton}
     </button>
@@ -15,6 +18,7 @@ const Button = ({ className, textButton, onClick }) => {
 Button.propTypes = {
   className: PropTypes.string,
   textButton: PropTypes.string,
+  disabled: PropTypes.bool,
   onClick: PropTypes.func,
 };
 

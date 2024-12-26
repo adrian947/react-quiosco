@@ -10,7 +10,8 @@ const Router = () => {
   return (
     <BrowserRouter>
       <Routes>
-        <Route element={<AuthLayout />}>
+        <Route path='/' element={<AuthLayout />}>
+          <Route index element={<Navigate to='login' />} />
           <Route index path='login' element={<Login />} />
           <Route path='register' element={<Register />} />
         </Route>

@@ -4,11 +4,10 @@ import { Resume } from '../components/Resume';
 
 const Dashboard = () => {
   return (
-    <div className='md:flex'>
+    <div className='grid grid-cols-[1fr,3fr,1fr] p-4'>
       <Sidebar />
-      <main className='flex-1'>
-
-      <Outlet />
+      <main>
+        <Outlet />
       </main>
       <Resume />
     </div>
