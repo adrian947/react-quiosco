@@ -1,9 +1,13 @@
 import { create } from 'zustand';
 
 export const useStore = create((set, get) => ({
+  categories: [],
   categorieName: 'Cafe',
+  products: [],
   productSelected: null,
   productsToOrder: [],
+  setCategories: (data) => set({ categories: data }),
+  setProducts: (data) => set({ products: data }),
   changeCategorieName: (data) => set({ categorieName: data }),
   setProductSelected: (data) => set({ productSelected: data }),
   clearProductsToOrder: () => set({ productsToOrder: [] }),

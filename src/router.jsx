@@ -1,4 +1,4 @@
-import { BrowserRouter, Navigate, Route, Routes } from 'react-router';
+import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 import AuthLayout from './auth/AuthLayout';
 import Login from './auth/Login';
 import Register from './auth/Register';
@@ -10,17 +10,21 @@ const Router = () => {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path='/' element={<AuthLayout />}>
-          <Route index element={<Navigate to='login' />} />
-          <Route index path='login' element={<Login />} />
-          <Route path='register' element={<Register />} />
+        {/* Rutas de autenticación */}
+        <Route path="/" element={<AuthLayout />}>
+          <Route index element={<Navigate to="login" replace />} />
+          <Route path="login" element={<Login />} />
+          <Route path="register" element={<Register />} />
         </Route>
-        <Route path='home' element={<Dashboard />}>
-          <Route index element={<Navigate to='products/1' />} />
-          <Route path='products/:id' element={<Products />} />
-          {/* <Route path='/home/com2' element={<COM2 />} /> */}
+
+        {/* Rutas del dashboard */}
+        <Route path="home" element={<Dashboard />}>
+          <Route index element={<Navigate to="products/1" replace />} />
+          <Route path="products/:id" element={<Products />} />
         </Route>
-        <Route path='*' element={<NotFound />} />
+
+        {/* Ruta para página no encontrada */}
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>
   );

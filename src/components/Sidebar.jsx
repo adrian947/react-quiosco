@@ -1,14 +1,28 @@
+import { useEffect } from 'react';
 import { NavLink } from 'react-router';
-import { categories } from '../data/categories';
+
 import Button from './Button';
 import { useStore } from '../store/store';
+import axiosInstance from '../api/axios';
+import { categories as categorieStatic } from '../data/categories';
 
 export const Sidebar = () => {
-  const { clearProductsToOrder } = useStore();
+  const { clearProductsToOrder, categories, setCategories } = useStore();
 
   const handleCancelOrder = () => {
     clearProductsToOrder();
   };
+
+  useEffect(() => {
+    const getCategories = async () => {
+      if (import.meta.env.VITE_APP_ENVIROMENT === 'dev') {
+        const { data } = await axiosInstance.get('/categories');
+        return setCategories(data.data);
+      }
+      setCategories(categorieStatic);
+    };
+    getCategories();
+  }, [setCategories]);
 
   return (
     <aside>
